@@ -189,7 +189,7 @@
   ```
 
   
-**UPDATE User task**
+**UPDATE User points**
 ----
   Returns json data about a single user.
 * **BASE URL**
