@@ -8,7 +8,7 @@ const initializePassport = require('../config/passport');
 
 const createUserTasks  = require('./utils/createUserTasks');
 
-console.log('createUserTasks :', createUserTasks()[0].map(day => new Date(day.date).toString()));
+console.log('createUserTasks :', createUserTasks()[0].days.map(day => new Date(day.date).toString()));
 
 const { app, routes } = require('./controller');
 

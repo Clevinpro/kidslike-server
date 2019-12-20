@@ -23,8 +23,8 @@ const createUser = (request, response) => {
     
     response.json({
       status: 'success',
+      token,
       user, 
-      token
     });
   };
 

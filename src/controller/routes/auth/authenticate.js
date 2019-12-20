@@ -53,7 +53,7 @@ const authenticate = (req, res) => {
     const token = generateToken(payload);
 
     res.json({
-      success: true,
+      status: 'success',
       message: 'Enjoy your token!',
       token: token,
       user: {

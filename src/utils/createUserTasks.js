@@ -420,9 +420,13 @@ function createUserTasks() {
     return monday + day * 60 * 60 * 24 * 1000
   } 
 
-  return tasks.map(el => el.days.map((day, i) => {
-    return { ...day, date: getDayOfWeek(i), _id: uuidv1() }
-  }))
+  return tasks.map(el => {
+    
+    const newDays = el.days.map((day, i) => {
+      return { ...day, date: getDayOfWeek(i), _id: uuidv1() }
+    })
+    return {...el, days: newDays }
+  })
   
 }
 

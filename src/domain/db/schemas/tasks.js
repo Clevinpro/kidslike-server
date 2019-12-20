@@ -3,7 +3,6 @@ const createUserTasks = require('../../../utils/createUserTasks');
 
 const TasksSchema = mongoose.Schema(
   {
-    type: { type: String, default: "" },
     items: {
       type: Array, default: createUserTasks()
     }
