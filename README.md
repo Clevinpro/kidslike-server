@@ -59,7 +59,7 @@
   ```
 
 
-  **SIGN IN User**
+**SIGN IN User**
 ----
   Returns json data about a single user.
 * **BASE URL**
@@ -122,7 +122,7 @@
   ```
 
   
-  **GET CURRENT User**
+**GET CURRENT User**
 ----
   Returns json data about a single user.
 * **BASE URL**
