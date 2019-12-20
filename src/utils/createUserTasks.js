@@ -423,7 +423,7 @@ function createUserTasks() {
   return tasks.map(el => {
     
     const newDays = el.days.map((day, i) => {
-      return { ...day, date: getDayOfWeek(i), _id: uuidv1() }
+      return { ...day, date: getDayOfWeek(i) }
     })
     return {...el, days: newDays }
   })

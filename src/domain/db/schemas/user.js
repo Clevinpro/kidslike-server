@@ -11,10 +11,10 @@ const userSchema = new Schema(
     googleId: { type: String },
     name: { type: String },
     points: { type: Number, default: 0 },
-    tasks: {
+    tasks: [{
       type: Schema.Types.ObjectId,
-      ref: 'Tasks'
-    },
+      ref: 'Task'
+    }],
   },
   {
     timestamps: true

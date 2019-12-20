@@ -1,7 +1,9 @@
 const core = require('../../core');
 const { pick } = require('lodash');
 const User = require('../db/schemas/user');
-const Tasks = require('../db/schemas/tasks');
+const Task = require('../db/schemas/task');
+const createUserTasks = require('../../utils/createUserTasks');
+
 const bcrypt = require('bcrypt');
 
 const saveUserInDB = (userData) => new User(userData).save();
@@ -40,10 +42,9 @@ const createUser = (userInput) => new Promise((resolve, reject) => {
 
   console.log('user :', user);
 
-  return new Tasks()
-    .save()
+  return Task.insertMany(createUserTasks())
     .then(tasks => {
-      user.tasks = tasks._id;
+      user.tasks = tasks.map(task => task._id);
       return saveUserInDB(user)
         .then(pickUserFields)
         .then(resolve)

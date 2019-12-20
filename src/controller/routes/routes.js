@@ -27,6 +27,7 @@ const submitForm = require("./user/submit-form");
 const createTask = require("./tasks/create-task");
 const getTasks = require("./tasks/get-tasks");
 const deleteTask = require("./tasks/delete-task");
+const updateTask = require("./tasks/update-task");
 
 
 const apiRoutes = express.Router();
@@ -48,6 +49,7 @@ apiRoutes
 
   // Tasks
   .get("/tasks/:userId", getTasks)
+  .put("/tasks/:id", updateTask)
 
   
   
