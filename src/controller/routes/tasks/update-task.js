@@ -1,10 +1,14 @@
 const Task = require('../../../domain/db/schemas/task');
+const User = require('../../../domain/db/schemas/user');
+const getUserId = require('../../../utils/getUserId');
 
 const updateTask = (request, response) => {
   const task = request.body;
   const id = request.params.id;
-  console.log('task___ :', task);
+  const userId = getUserId(request);
 
+  console.log('task___ :', task);
+console.log('userId :', userId);
   const sendError = () => {
     response.status(400);
     response.json({
@@ -18,10 +22,19 @@ const updateTask = (request, response) => {
       return sendError();
     }
 
-    response.json({
-      status: 'success',
-      task: newTask
-    });
+    User.findOne({ _id: userId })
+    .populate('tasks')
+    .exec(function(err, {tasks}) {
+      console.log('user tasks:', tasks);
+      if (!tasks) {
+        return sendError();
+      }  
+      response.json({
+        status: 'success',
+        tasks: tasks
+      });
+    })
+
   };
 
   Task.findOneAndUpdate({ _id: id }, task, { new: true })

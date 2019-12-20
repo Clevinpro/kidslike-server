@@ -47,9 +47,7 @@ apiRoutes
   .get('/auth/google', googleAuth)
   .get('/google/callback', googleAuth, loginWithGoogle)
 
-  // Tasks
-  .get("/tasks/:userId", getTasks)
-  .put("/tasks/:id", updateTask)
+  
 
   
   
@@ -61,6 +59,8 @@ apiRoutes
   .post("/upload", verifyToken, uploadImages)
 
   // Tasks
+  .get("/tasks/:userId", verifyToken, getTasks)
+  .put("/tasks/:id", verifyToken, updateTask)
   .post("/tasks", verifyToken, createTask)
   .delete('/tasks/:id', verifyToken, deleteTask)
 

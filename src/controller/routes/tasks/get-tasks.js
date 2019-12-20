@@ -1,12 +1,12 @@
-const Product = require("../../../domain/db/schemas/tasks");
+const User = require("../../../domain/db/schemas/user");
 
-const getProduct = (request, response) => {
-  const id = request.params.id;
+const getUser = (request, response) => {
+  const id = request.params.userId;
 
-  const sendResponse = task => {
+  const sendResponse = ({tasks}) => {
     response.set("Content-type", "application/json");
     response.status(200);
-    response.json({ status: "success", task });
+    response.json({ status: "success", tasks });
   };
 
   const sendError = () => {
@@ -16,9 +16,11 @@ const getProduct = (request, response) => {
     });
   };
 
-  const findProduct = Product.findOne({ _id: id });
+  const findUser = 
+  User.findOne({ _id: id })
+    .populate('tasks');
 
-  findProduct.then(sendResponse).catch(sendError);
+  findUser.then(sendResponse).catch(sendError);
 };
 
-module.exports = getProduct;
+module.exports = getUser;
