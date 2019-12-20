@@ -3,7 +3,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
@@ -64,7 +64,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
@@ -127,7 +127,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
@@ -194,7 +194,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
@@ -263,7 +263,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
@@ -334,7 +334,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost/api`
+  `http://localhost:8080/api`
 
 * **URL**
 
