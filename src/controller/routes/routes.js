@@ -17,11 +17,8 @@ const loginWithGoogle = require('./auth/google');
 // Users
 const createUser = require("./auth/create-user");
 const getUser = require("./user/get-user");
-const getUsers = require("./user/get-users");
 const updateUser = require("./user/update-user");
-const deleteUser = require("./user/delete-user");
-const uploadImages = require("./user/upload-igames");
-const submitForm = require("./user/submit-form");
+const updatePoints = require("./user/update-points");
 
 // Tasks
 const createTask = require("./tasks/create-task");
@@ -40,8 +37,6 @@ apiRoutes
   .post("/auth/signup", createUser)
   .post("/auth/signin", authenticate)
 
-  .post("/submit", submitForm)
-
   .get("/auth/logout", logout)
   .get("/auth/current", currentUser)
   .get('/auth/google', googleAuth)
@@ -52,11 +47,9 @@ apiRoutes
   
   
 
-  .get("/users", verifyToken, getUsers)
   .get("/users/:id", verifyToken, getUser)
   .put("/users/:id", verifyToken, updateUser)
-  .delete("/users/:id", verifyToken, deleteUser)
-  .post("/upload", verifyToken, uploadImages)
+  .put("/users/points/:id", verifyToken, updatePoints)
 
   // Tasks
   .get("/tasks/:userId", verifyToken, getTasks)
