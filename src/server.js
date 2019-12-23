@@ -32,7 +32,7 @@ const startServer = port => {
     initializePassport(passport);
   app.listen(port);
 
-  console.log('Server was started at http://localhost:' + port);
+  console.log(`Server was started at ${config.serverURL}`);
 };
 
 module.exports = startServer;

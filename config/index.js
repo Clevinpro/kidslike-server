@@ -16,7 +16,8 @@ const config = {
     clientSecret: 'GwgJcWmjC9em3LENmSHOfWWR',
     // make sure the call back url matches what was set on Twitter
     // when registering the app
-    callbackURL: `${serverURL}/api/google/callback`
+    callbackURL: `${serverURL}/api/google/callback`,
+    serverURL
   }
 };
 
