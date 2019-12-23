@@ -1,18 +1,27 @@
 const schedule = require("node-schedule");
 const Task = require("../../domain/db/schemas/task");
-const User = require("../../domain/db/schemas/user");
 const createUserTask = require('../../utils/createUserTask');
 
-function randomIntInc(low, high) {
-  return Math.floor(Math.random() * (high - low + 1) + low);
-}
+const resetTasks = () => {
+  Task.updateMany({}
 
-const incrementUserPoints = (id, points) => {
-  User.findById(id).exec(function(err, user) {
-    if (err) return sendError(err);
-    user.points = Number(+user.points + points).toFixed(2);
-    user.save();
-  });
+    , {$set: {days: createUserTask({title: '', taskPoints: 0}).days}}
+    
+    , function (err, result) {
+    
+        if (err) {
+    
+            console.log("update document error");
+    
+        } else {
+    
+            console.log("update document success");
+    
+            console.log(result);
+    
+        }
+    
+    });
 };
 
 const getNextDay = () => {
@@ -31,12 +40,13 @@ const getNextDay = () => {
 }
 
 const scheduleTasks = tasks => {
-  let inputDate = new Date(new Date().getTime() + 60 * 10 * 1000);
-  console.log('need to run:_____', inputDate.toString())
+  let inputDate = new Date(new Date().getTime() + 60 * 1 * 1000);
+  
   let tasksJob = schedule.scheduleJob(inputDate, function() {
     console.log('schudle')  
-    inputDate = new Date(new Date(inputDate).getTime() + 60 * 10 * 1000 );
+    inputDate = new Date(new Date(inputDate).getTime() + 60 * 1 * 1000 );
     console.log(inputDate.toString())
+    resetTasks();
     tasksJob.reschedule(inputDate);
     }
   );
@@ -44,13 +54,13 @@ const scheduleTasks = tasks => {
 
 const scheduleRunner = () => {
 
-  Task.find()
-    .lean()
-    .exec(function(err, tasks) {
-      if (err) throw new Err(err);
-      const updated = tasks.map(task => ({...createUserTask(task), ...task}));
-      scheduleTasks(updated);
-    });
+  // Task.find()
+  //   .lean()
+  //   .exec(function(err, tasks) {
+  //     if (err) throw new Err(err);
+  //     const updated = tasks.map(task => ({...createUserTask(task), ...task}));
+  //   });
+    scheduleTasks();
 };
 
 module.exports = scheduleRunner;

@@ -18,7 +18,7 @@ const currentUser = (req, response) => {
     response.set('Content-type', 'application/json');
     response.status(200);
     if (user === null) {
-      return response.json({ status: 'no user' });
+      return response.status(400).json({ status: 'error', error: 'user not found' });
     }
     const { _id, name, email, tasks, points, photo  } = user;
 

@@ -34,13 +34,13 @@ const authenticate = (req, res) => {
     if (err) throw err;
 
     if (!user) {
-      res.json(errorUser);
+      res.status(400).json(errorUser);
       return;
     }
     const correctPassword = passwMatches(password, user.password);
 
     if (!correctPassword) {
-      res.json(errorPassword);
+      res.status(400).json(errorPassword);
       return;
     }
 
