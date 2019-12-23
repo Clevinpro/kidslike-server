@@ -1,6 +1,12 @@
 const dbUser = 'clv';
 const dbPassword = 'MKKFjYOJFSAdTsTl';
 
+const server = window.location.origin;
+const serverURL =
+      window.location.hostname.indexOf('localhost') !== -1 || location.hostname === "127.0.0.1"
+        ? `http://localhost:${config.port}`
+        : server;
+
 const config = {
   secret: 'key123',
   port: 8080,
@@ -10,7 +16,7 @@ const config = {
     clientSecret: 'GwgJcWmjC9em3LENmSHOfWWR',
     // make sure the call back url matches what was set on Twitter
     // when registering the app
-    callbackURL: 'http://127.0.0.1:8080/api/google/callback'
+    callbackURL: `${serverURL}/api/google/callback`
   }
 };
 
