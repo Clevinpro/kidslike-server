@@ -1,10 +1,8 @@
 const uuidv1 = require('uuid/v1');
-
-
 const tasks = [
   {
     title: "Застелити ліжко",
-    imgName: "",
+    imgName: "bed",
     days: [
       {
         date: 0,
@@ -54,7 +52,7 @@ const tasks = [
     taskPoints: 3,
   },{
     title: "Пропилососити"
-,     imgName: "",
+,     imgName: "vacuum",
     days: [
       {
         date: 0,
@@ -104,7 +102,7 @@ const tasks = [
     taskPoints: 5,
   },{
     title: "Полити квіти"
-,    imgName: "",
+,    imgName: "flowers",
     days: [
       {
         date: 0,
@@ -154,7 +152,7 @@ const tasks = [
     taskPoints: 2,
   },{
     title: "Почитати книгу"
-,      imgName: "",
+,      imgName: "book",
     days: [
       {
         date: 0,
@@ -204,7 +202,7 @@ const tasks = [
     taskPoints: 4,
   },{
     title: "Викинути сміття",
-    imgName: "",
+    imgName: "trash",
     days: [
       {
         date: 0,
@@ -254,7 +252,7 @@ const tasks = [
     taskPoints: 1,
   },{
     title: "Почистити зуби"
-,      imgName: "",
+,      imgName: "teeth",
     days: [
       {
         date: 0,
@@ -304,7 +302,7 @@ const tasks = [
     taskPoints: 1,
   },{
     title: "Підмести"
-    ,imgName: "",
+    ,imgName: "sweep",
     days: [
       {
         date: 0,
@@ -354,7 +352,7 @@ const tasks = [
     taskPoints: 4,
   },{
     title: "Скласти іграшки",
-    imgName: "",
+    imgName: "toys",
     days: [
       {
         date: 0,
@@ -423,7 +421,7 @@ function createUserTasks() {
   return tasks.map(el => {
     
     const newDays = el.days.map((day, i) => {
-      return { ...day, date: getDayOfWeek(i) }
+      return { ...day, date: getDayOfWeek(i), _id: uuidv1() }
     })
     return {...el, days: newDays }
   })
