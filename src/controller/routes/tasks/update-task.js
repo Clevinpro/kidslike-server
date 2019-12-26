@@ -11,11 +11,13 @@ const updateTask = (request, response) => {
 
   console.log('task___ :', forUpdateTask);
 console.log('userId :', userId);
+console.log('id :', id);
+
   const sendError = () => {
     response.status(400);
     response.json({
       status: 'error',
-      text: 'there is no such task'
+      text: 'User by taskID not found'
     });
   };
 
@@ -24,19 +26,28 @@ console.log('userId :', userId);
           return sendError();
         }
 
-        if (!user) {
-          return sendError();
-        }  
-        response.json({
-          status: 'success',
-          user: user
-        });
+       
+        
+        User.findOne({ _id: userId })
+          .populate('tasks')
+          .exec(function(err, user) {
+            if (!user) {
+              return sendError();
+            } 
+            response.json({
+              status: 'success',
+              user: user
+            });
+          })
+        
+        console.log('updTask :', updTask);
 
   };
   
   User.findOne({ _id: userId })
   .populate('tasks')
   .exec(function(err, user) { 
+    if(!user) sendError();
     const oldTask = user.tasks.find(task => task._id.toString() === id);
     console.log('oldTask :', oldTask);
     const oldWeekPoints = getWeekPoints(oldTask.days, oldTask.taskPoints);
@@ -51,7 +62,7 @@ console.log('userId :', userId);
       .populate('tasks')
       .exec(function(err, user) {
         Task.findOneAndUpdate({ _id: id }, forUpdateTask, { new: true })
-          .then((updTask) => sendResponse(updTask, user))
+          .then((updTask) =>{ sendResponse(updTask, user)})
           .catch(sendError);
       })
   })
