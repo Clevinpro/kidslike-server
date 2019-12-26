@@ -13,6 +13,7 @@ const currentUser = (req, response) => {
 
   const decodedUser = jwt.decode(token);
   const userId = decodedUser && decodedUser.id || null;
+  console.log('userId', userId)
 
   const sendResponse = user => {
     response.set('Content-type', 'application/json');
