@@ -4,7 +4,7 @@ const getUserId = require('../../../utils/getUserId');
 
 const getWeekPoints = (days, taskPoints) => days.reduce((acc, day) => day.isDone && acc + taskPoints || acc , 0)
 
-const updateTask = (request, response) => {
+const updateTask = async (request, response) => {
   const forUpdateTask = request.body;
   const id = request.params.id;
   const userId = getUserId(request);
@@ -26,6 +26,8 @@ console.log('id :', id);
           return sendError();
         }
 
+        updTask.save()
+
        
         
         User.findOne({ _id: userId })
@@ -44,6 +46,26 @@ console.log('id :', id);
 
   };
   
+  // const user = await User.findOne({ _id: userId })
+  // .populate('tasks')
+  //   if(!user) return sendError();
+  //   const oldTask = user.tasks.find(task => task._id.toString() === id);
+  //   console.log('oldTask :', oldTask);
+  //   const oldWeekPoints = getWeekPoints(oldTask.days, oldTask.taskPoints);
+  //   const newWeekPoints = getWeekPoints(forUpdateTask.days, oldTask.taskPoints);
+
+  //   const updateBy = newWeekPoints - oldWeekPoints;
+  //   console.log('updateBy :', updateBy);
+  //   const points = user.points + updateBy;
+  //   console.log('points :', points);
+  //   const updUser = {points};
+  //   User.findOneAndUpdate({ _id: userId }, updUser, { new: true })
+  //     .populate('tasks')
+  //     .exec(function(err, user) {
+  //       Task.findOneAndUpdate({ _id: id }, forUpdateTask, { new: true })
+  //         .then((updTask) =>{ sendResponse(updTask, user)})
+  //         .catch(sendError);
+  //   })
   User.findOne({ _id: userId })
   .populate('tasks')
   .exec(function(err, user) { 
@@ -61,9 +83,9 @@ console.log('id :', id);
     User.findOneAndUpdate({ _id: userId }, updUser, { new: true })
       .populate('tasks')
       .exec(function(err, user) {
-        Task.findOneAndUpdate({ _id: id }, forUpdateTask, { new: true })
-          .then((updTask) =>{ sendResponse(updTask, user)})
-          .catch(sendError);
+        Task.findOneAndUpdate({ _id: id }, forUpdateTask, { new: true }).exec(function(err, updTask) {
+          sendResponse(updTask, user)
+        })
       })
   })
   
