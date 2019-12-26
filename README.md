@@ -3,7 +3,7 @@
   Returns json data about a single user.
 * **BASE URL**
 
-  `http://localhost:8080/api`
+  `http://localhost:8080/api` || `https://kidslike.herokuapp.com/` 
 
 * **URL**
 
@@ -33,7 +33,7 @@
     **Content:** `
     {
       status: 'success',
-      user: { id : String, tasks : [], email: String, points: Number },
+      user: { _id : String, tasks : [], email: String, points: Number },
       token: String
     }
     `
@@ -96,7 +96,7 @@
     **Content:** `
     {
       status: 'success',
-      user: { id : String, tasks : [], email: String, points: Number },
+      user: { _id : String, tasks : [], email: String, points: Number },
       token: String
     }
     `
@@ -159,7 +159,7 @@
     **Content:** `
     {
       status: 'success',
-      user: { id : String, tasks : [], email: String, points: Number },
+      user: { _id : String, tasks : [], email: String, points: Number },
       token: String
     }
     `
@@ -228,7 +228,7 @@
     **Content:** `
     {
       status: 'success',
-      user: { id : String, tasks : [], email: String, points: Number },
+      user: { _id : String, tasks : [], email: String, points: Number },
     }
     `
  
@@ -368,7 +368,7 @@
     **Content:** `
     {
       status: 'success',
-      tasks : [],
+      user: { _id : String, tasks : [], email: String, points: Number },
     }
     `
  
