@@ -1,10 +1,13 @@
 const Task = require('../../../domain/db/schemas/task');
 const User = require('../../../domain/db/schemas/user');
+const getUserId = require('../../../utils/getUserId');
 
 const updateTask = (request, response) => {
   const task = request.body;
   const id = request.params.id;
-  console.log('article___ :', task);
+  const userId = getUserId(request);
+  console.log('task___ :', task);
+  console.log('id :', id);
 
   const sendError = () => {
     response.status(400);
@@ -15,12 +18,14 @@ const updateTask = (request, response) => {
   };
 
   const sendResponse = newTask => {
-    if (!newTask) {
-      return sendError();
-    }
+    // if (!newTask) {
+    //   return sendError();
+    // }
+
+    console.log('newTask :', newTask);
 
     const findUser = 
-    User.findOne({ _id: id })
+    User.findOne({ _id: userId })
       .populate('tasks');
 
     findUser
