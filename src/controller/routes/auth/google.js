@@ -12,6 +12,7 @@ const generateToken = paramsForTokenGeneration => {
 const loginWithGoogle = (req, res) => {
   const token = generateToken({id: req.user._id });
   // window.location.hash = '';
+  // console.log('req _______:', req);
   res.redirect(`http://localhost:3000/auth?token=${token}`);
   res.end();
 }

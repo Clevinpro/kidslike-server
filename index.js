@@ -8,4 +8,4 @@ console.log('databaseUrl :', databaseUrl);
 
 startServer(process.env.PORT || port);
 connectToDB(databaseUrl);
-// schedule();
+schedule();

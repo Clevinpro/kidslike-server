@@ -7,7 +7,7 @@ const port = 8080;
 const config = {
   secret: 'key123',
   port,
-  databaseUrl: `mongodb+srv://${dbUser}:${dbPassword}@cluster0-mskwo.mongodb.net/kidslike?retryWrites=true&w=majority`,
+  databaseUrl: `mongodb+srv://${dbUser}:${dbPassword}@cluster0-mskwo.mongodb.net/test?retryWrites=true&w=majority`,
   GOOGLE_CONFIG: {
     clientID: '298901202358-vemf3ql96nar8jffeo89emtpsccbosaq.apps.googleusercontent.com',
     clientSecret: 'GwgJcWmjC9em3LENmSHOfWWR',
